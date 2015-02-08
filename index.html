@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script src="jquery.js"></script>
+<script type="text/javascript">
+    (function($){
+//        alert(111);
+        var defaults = {
+            questions:'this is',
+            url:'/',
+            categories:['jQuery','Yahoo']
+        };
+
+        function LoadAutocomplete(element,options){
+            this.config = $.extend({},defaults,options);
+            this.element = element;
+            this.init();
+
+        }
+        LoadAutocomplete.prototype.init = function(){
+
+            $('<h1>',{text:this.config.questions}).appendTo(this.element);
+
+        }
+
+        $.fn.loadAutocomplete = function(options){
+            new LoadAutocomplete(this.first(),options);
+            return this.first();
+        }
+    })(jQuery);
+    $('.first').loadAutocomplete();
+</script>
+<div class="first">test</div>
+</body>
+</html>
